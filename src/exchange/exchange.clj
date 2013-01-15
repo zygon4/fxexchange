@@ -6,12 +6,8 @@
 ;;;  (:use [clojure.contrib.duck-streams :only (read-lines)])
 ;;;  (:import [java.net URL]))
 
-(defrecord Tick
-    [time high low avg vwap vol last buy sell])
-
-(defprotocol Ticker
-  (get-tick [this]
-    "Returns the tickers current Tick"))
+(defrecord Ticker
+    [time high low vol last buy sell])
 
 (defrecord Order
   [time type status price amount total currency])
@@ -29,14 +25,11 @@ of a seq for the security given a start time and end time."))
 those pairs will be monitored.")
   (stop [this] "Stops the monitor"))
 
-
-
 (defprotocol Exchange
   "An interface to an exchange that provides ticker values, user controls for buying/selling,
 reviewing depth, etc.."
 
-  (get-tick [this] "Returns this exchange's current tick")
-;;;  (get-ticker [this sec] "Returns the exchange's ticker instance.")
+  (get-ticker [this] "Returns the exchange's ticker instance.")
 
   (get-balance [this] "Returns a map of current balances by monetary type.")
   
