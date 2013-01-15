@@ -1,6 +1,0 @@
-(ns exchange.db.datomic
-  :use [datomic.api :as d])
-
-
-
-datomic:free://localhost:4334/
