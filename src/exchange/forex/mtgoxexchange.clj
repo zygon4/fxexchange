@@ -2,10 +2,10 @@
   (:use exchange.net.netutil)
   (:use clojure.repl
         clojure.java.javadoc)
-  (:import exchange.exchange.FXExchange)
-  (:import exchange.exchange.FXMonitor)
-  (:import exchange.exchange.FXOrder)
-  (:import exchange.exchange.FXTicker)
+  (:import exchange.exchange.FXExchange
+           exchange.exchange.FXMonitor
+           exchange.exchange.FXOrder
+           exchange.exchange.FXTicker)
   (:import com.xeiam.xchange.Currencies
            com.xeiam.xchange.Exchange
            com.xeiam.xchange.ExchangeFactory
