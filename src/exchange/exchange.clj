@@ -1,31 +1,27 @@
 (ns exchange.exchange
   (:use clojure.repl
         clojure.java.javadoc))
-;;;  (:use [currency.net]))
-;;;  (:require [clj-json [core :as json]])
-;;;  (:use [clojure.contrib.duck-streams :only (read-lines)])
-;;;  (:import [java.net URL]))
 
-(defrecord Ticker
+(defrecord FXTicker
     [time high low vol last buy sell])
 
-(defrecord Order
+(defrecord FXOrder
   [time type status price amount total currency])
 
-(defprotocol History
+(defprotocol FXHistory
   "Represents the exchanges historic information, transactions, etc."
   (get-tick-range [this start] "Returns a range of Ticks in the form
 of a seq for the security given a start time.")
   (get-tick-range [this start end] "Returns a range of Ticks in the form
 of a seq for the security given a start time and end time."))
 
-(defprotocol Monitor
+(defprotocol FXMonitor
   "Represents a generic monitor that has a lifecycle."
   (start [this pairs] "Starts the monitor.  If pairs are supplied then only
 those pairs will be monitored.")
   (stop [this] "Stops the monitor"))
 
-(defprotocol Exchange
+(defprotocol FXExchange
   "An interface to an exchange that provides ticker values, user controls for buying/selling,
 reviewing depth, etc.."
 

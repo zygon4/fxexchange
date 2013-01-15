@@ -2,10 +2,10 @@
   (:use exchange.net.netutil)
   (:use clojure.repl
         clojure.java.javadoc)
-  (:import exchange.exchange.Exchange)
-  (:import exchange.exchange.Monitor)
-  (:import exchange.exchange.Tick)
-  (:import exchange.exchange.Order)
+  (:import exchange.exchange.FXExchange)
+  (:import exchange.exchange.FXMonitor)
+  (:import exchange.exchange.FXOrder)
+  (:import exchange.exchange.FXTicker)
   (:import com.xeiam.xchange.Currencies
            com.xeiam.xchange.Exchange
            com.xeiam.xchange.ExchangeFactory
@@ -33,7 +33,7 @@
 
 (defn- get-tick [market-data-service]
   (let [tick (.getTicker market-data-service Currencies/BTC Currencies/USD)]
-    (Ticker.
+    (FXTicker.
      (.getLocalMillis (.getLocalTime (.getTimestamp tick)))
      (.getAmount (.getHigh tick))
      (.getAmount (.getLow tick))
@@ -62,17 +62,17 @@
                           (Thread/sleep (* interval 1000))
                           (recur)))))]
     (reify
-      Exchange
+      FXExchange
       (cancel-order [this order] nil)
       (get-ticker [this] (get-tick market-data-service))
-      (get-balance [this] (get-mtgox-balance))
-      (get-depth [this sec] (get-depth-from-mtgox sec))
+      (get-balance [this] nil)
+      (get-depth [this sec] nil)
       (get-history [this] nil)
-      (get-orders [this] TEST_ORDERS)
+      (get-orders [this] nil)
       (place-order [this type amount price sec] (println "placed order"))
       (get-name [this] identifier)
       (get-securities [this] "todo: BTC/USD")
-      Monitor
+      FXMonitor
       (start [this pairs]
         (future (listen-fn)))
       (stop [this]

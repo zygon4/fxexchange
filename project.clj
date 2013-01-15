@@ -11,8 +11,6 @@
                  [com.xeiam.xchange/xchange-core "1.3.0-SNAPSHOT"]
                  [com.xeiam.xchange/xchange-mtgox "1.3.0-SNAPSHOT"]]
 
-;;  :plugins [[lein-swank "1.4.4"]]
-
   :warn-on-reflection true
 
   :repositories [["jetty" "mvnrepository.com/artifact"]
