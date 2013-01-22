@@ -1,5 +1,4 @@
 (ns exchange.forex.mtgoxexchange
-  (:use exchange.net.netutil)
   (:use clojure.repl
         clojure.java.javadoc)
   (:import exchange.exchange.FXExchange

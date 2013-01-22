@@ -1,10 +1,9 @@
 (ns exchange.core
   (:use clojure.repl
         clojure.java.javadoc)
-  (:import exchange.exchange.Exchange)
-  (:import exchange.exchange.Monitor)
-  (:use exchange.forex.mtgoxexchange)
-  )
+  (:import exchange.exchange.FXExchange)
+  (:import exchange.exchange.FXMonitor)
+  (:use exchange.forex.mtgoxexchange))
 
 (comment
   "todo list:
@@ -21,6 +20,7 @@
   "I don't do a whole lot."
   [& args]
   (let [ex (get-mtgox-exchange "mtgox")]
-    (start ex [])
+;;;    (start ex [])
     (Thread/sleep 2000)
-    (stop ex)))
+;;;    (stop ex)
+    ))
